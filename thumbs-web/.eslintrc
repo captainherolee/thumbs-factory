@@ -1,0 +1,86 @@
+{
+  "env": {
+      "browser": true,
+      "es2021": true,
+      "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb",
+    "airbnb/hooks",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+      "ecmaFeatures": {
+          "jsx": true
+      },
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+  },
+  "plugins": [
+      "react",
+      "@typescript-eslint"
+  ],
+  "globals" : {
+    "JSX": true
+  },
+  "rules": {
+    "prefer-destructuring": "off",
+    "import/extensions" : [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never",
+        "json": "never"
+      }
+    ],
+    "react/jsx-filename-extension": [
+      2,
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-no-useless-fragment": "off",
+    "@typescript-eslint/no-inferrable-types": "off",
+    "react/jsx-curly-brace-presence": "off",
+    "react/jsx-fragments": "off",
+    "react/require-default-props": 0,
+    "react/destructuring-assignment": "off",
+    "import/prefer-default-export": "off",
+    "jsx-a11y/anchor-is-valid": 0,
+    "import/no-extraneous-dependencies": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-var-requires": 0,
+    "react/react-in-jsx-scope": "off",
+    "no-use-before-define": "off",
+    "import/no-unresolved": "off",
+    "react/button-has-type": "off",
+    "spaced-comment": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "no-console": "off",
+    "react/no-unescaped-entities": 0,
+    "react-hooks/exhaustive-deps": "off",
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": ["arrow-function", "function-declaration"],
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "@typescript-eslint/ban-types": "off"
+  },
+  "settings": {
+    "import/resolver" : {
+      "node" : {
+        "extensions" : [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  }
+}

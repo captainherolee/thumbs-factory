@@ -1,6 +1,7 @@
 import React from 'react';
 
 function App() {
+  console.log("sdfdsf")
   return (
     <div className="App">
       <header className="App-header">
@@ -8,7 +9,7 @@ function App() {
         <p>
          React Web
         </p>
-        
+
       </header>
     </div>
   );
