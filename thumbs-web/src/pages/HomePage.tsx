@@ -1,13 +1,13 @@
 import CssBaseline from '@mui/material/CssBaseline';
-import FixedTabs from '@componets/FixedTabs';
 import { useRecoilValue } from 'recoil';
 import { pageAtom } from '@stores/page';
+import FullWidthTabs from '@componets/FixedTabs';
 
 function HomePage() {
   const selectedMenu = useRecoilValue(pageAtom);
   return (
     <>
-      <FixedTabs />
+      <FullWidthTabs />
       <CssBaseline />
     </>
   );
