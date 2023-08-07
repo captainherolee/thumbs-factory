@@ -8,6 +8,7 @@ import { Typography } from '@mui/material';
 import SimpleCharts from './BarChart';
 import ElectricStatus from './ElectricStatus';
 import GasStatus from './GasStatus';
+import RealTimeMonitoringChart from './RealtimeGraph';
 
 export default function LabTabs() {
   const [value, setValue] = React.useState('1');
@@ -21,18 +22,23 @@ export default function LabTabs() {
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChange} aria-label="lab API tabs example">
-            <Tab label="전력 상태" value="1" />
-            <Tab label="가스 상태" value="2" />
-            <Tab label="실시간 모니터링" value="3" />
+            <Tab label="전력 상태" value="1" sx={{ fontSize: '1.0rem' }} />
+            <Tab label="가스 상태" value="2" sx={{ fontSize: '1.0rem' }} />
+            <Tab label="실시간 모니터링" value="3" sx={{ fontSize: '1.0rem' }} />
           </TabList>
         </Box>
         <TabPanel value="1">
-          <ElectricStatus />
+          <ElectricStatus status={'normal'} />
         </TabPanel>
         <TabPanel value="2">
-          <GasStatus />
+          <GasStatus status={'normal'} />
         </TabPanel>
-        <TabPanel value="3">Item Thtree</TabPanel>
+        <TabPanel value="3">
+          <Typography variant="h6" sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            실시간 모니터링(초)
+          </Typography>
+          <RealTimeMonitoringChart />
+        </TabPanel>
       </TabContext>
     </Box>
   );

@@ -7,7 +7,7 @@ interface DataEntry {
   power: number;
 }
 
-const data: DataEntry[] = [{ id: 1, name: '전력', power: 2200 }];
+const data: DataEntry[] = [{ id: 1, name: '전력', power: 3300 }];
 
 export default function PowerBarChart() {
   return (
