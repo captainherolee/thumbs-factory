@@ -17,14 +17,14 @@ const rows: RowData[] = [
 
 export default function CustomTable() {
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{ backgroundColor: 'transparent' }}>
       <Table>
         <TableBody>
           {rows.map((row, index) => (
             <TableRow key={row.id}>
-              <TableCell>{row.col1}</TableCell>
-              <TableCell>{row.col2}</TableCell>
-              <TableCell>{row.col3}</TableCell>
+              <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>{row.col1}</TableCell>
+              <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>{row.col2}</TableCell>
+              <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>{row.col3}</TableCell>
             </TableRow>
           ))}
         </TableBody>
