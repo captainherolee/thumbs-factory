@@ -57,7 +57,6 @@ const RealTimeMonitoringChart: React.FC = () => {
           tick={{ fontSize: 12 }} // Adjust font size for x-axis tick labels
         />
         <YAxis domain={[0, 5000]} stroke="#fff" tickCount={10} allowDecimals={false} />
-        <Tooltip />
 
         <Line type="monotone" dataKey="value" stroke="#fff" activeDot={{ r: 8 }} />
       </LineChart>
