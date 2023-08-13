@@ -1,5 +1,5 @@
 import React from 'react';
-import { BarChart, Bar, YAxis, XAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, YAxis, XAxis, CartesianGrid, ResponsiveContainer } from 'recharts';
 
 interface DataEntry {
   id: number;

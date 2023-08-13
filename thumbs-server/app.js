@@ -2,7 +2,7 @@ const express = require("express");
 const mariadb = require("mariadb");
 
 const app = express();
-const port = 3000;
+const port = 5000;
 
 // MariaDB 연결 설정
 const pool = mariadb.createPool({

@@ -17,7 +17,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 interface GasStatusProps {
-  status: 'normal' | 'warning'; // Define possible status values
+  status: number;
 }
 
 export default function GasStatus({ status }: GasStatusProps) {

@@ -5,16 +5,33 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { Typography } from '@mui/material';
-import ElectricStatus from './ElectricStatus';
-import GasStatus from './GasStatus';
-import RealTimeMonitoringChart from './RealtimeGraph';
+import ElectricStatus from '@componets/ElectricStatus';
+import GasStatus from '@componets/GasStatus';
+import RealTimeMonitoringChart from '@componets/RealtimeGraph';
+import { useGetElectricityStatus } from '@hooks/electicity';
+import { useEffect, useState } from 'react';
+import { useGetGasStatus } from '@hooks/gas';
 
 export default function LabTabs() {
-  const [value, setValue] = React.useState('1');
-
+  const [value, setValue] = useState('1');
+  const [electricityStatus, setElectricityStatus] = useState(0);
+  const [gasStatus, setGasStatus] = useState(0);
+  const electricStatusQuery = useGetElectricityStatus();
+  const gasStatusQuery = useGetGasStatus();
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    if (!electricStatusQuery.isLoading) {
+      setElectricityStatus(electricStatusQuery.data);
+    }
+  }, [electricStatusQuery.isLoading]);
+  useEffect(() => {
+    if (!gasStatusQuery.isLoading) {
+      setGasStatus(gasStatusQuery.data);
+    }
+  }, [gasStatusQuery.isLoading]);
 
   return (
     <Box sx={{ width: '100%', typography: 'body', backgroundColor: '#20658B' }}>
@@ -40,10 +57,10 @@ export default function LabTabs() {
           </TabList>
         </Box>
         <TabPanel value="1" sx={{ backgroundColor: '#24365B', color: 'white' }}>
-          <ElectricStatus status={'normal'} />
+          <ElectricStatus status={electricityStatus} />
         </TabPanel>
         <TabPanel value="2" sx={{ backgroundColor: '#24365B', color: 'white' }}>
-          <GasStatus status={'normal'} />
+          <GasStatus status={gasStatus} />
         </TabPanel>
         <TabPanel value="3" sx={{ backgroundColor: '#24365B', color: 'white' }}>
           <Typography variant="h6" sx={{ borderBottom: 1, borderColor: 'divider' }}>

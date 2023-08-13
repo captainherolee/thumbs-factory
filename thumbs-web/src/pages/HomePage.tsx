@@ -9,10 +9,11 @@ function HomePage() {
   const theme = createTheme({
     palette: {
       background: {
-        default: '#24365B', // 전체 화면의 기본 바탕색을 흰색으로 설정합니다.
+        default: '#24365B',
       },
     },
   });
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

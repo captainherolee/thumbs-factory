@@ -7,11 +7,12 @@ import { Typography, Avatar, Divider } from '@mui/material';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import { GetStatusColor } from '@utils/convert';
 import { useState } from 'react';
-import PowerBarChart from './BarChart';
-import ElectricTableContents from './TableContents';
+import Loading from '@componets/CircularIndeterminate';
+import PowerBarChart from '@componets/BarChart';
+import ElectricTableContents from '@componets/TableContents';
 
 interface ElectricStatusProps {
-  status: 'normal' | 'warning' | 'error'; // Define possible status values
+  status: number;
 }
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -24,7 +25,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function ElectricStatus({ status }: ElectricStatusProps) {
   const statusColor = GetStatusColor(status);
-  const [commValue, setCommValue] = useState('통신정상');
+  const [commValue, setCommValue] = useState('');
   const [alaramValue, setAlaramValue] = useState(60);
 
   return (
