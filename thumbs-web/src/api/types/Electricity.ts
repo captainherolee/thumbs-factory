@@ -1,6 +1,6 @@
 export interface IElectricity {
   connectionStatus: number;
-  mdAlarmSetValue: string;
+  mdAlarmSetValue: number;
   activePower: number;
   maximumDemand: number;
   reactivePower: number;
@@ -10,7 +10,7 @@ export interface IElectricity {
   monthlyActivePower: number;
   cumulativeReactivePower: number;
   cumulativeActivePower: number;
-  detail: IElectricity;
+  detail: IElectricityDetail;
 }
 
 export interface IElectricityDetail {

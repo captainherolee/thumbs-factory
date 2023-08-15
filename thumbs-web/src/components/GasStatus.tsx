@@ -3,11 +3,14 @@ import { experimentalStyled as styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Typography, Avatar } from '@mui/material';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import { GetStatusColor } from '@utils/convert';
 import { BasicBorderColor, ConnectionStatus } from '@utils/constant';
+import { useRecoilState } from 'recoil';
+import { gasAtom } from '@stores/gas';
+import { useGetGas } from '@hooks/gas';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: BasicBorderColor,
@@ -25,6 +28,14 @@ export default function GasStatus({ status }: GasStatusProps) {
   const statusColor = GetStatusColor(status);
   const [commValue, setCommValue] = useState(ConnectionStatus.Loading);
   const [alaramValue, setAlaramValue] = useState(60);
+  const [gasValue, setGas] = useRecoilState(gasAtom);
+  const gasQuery = useGetGas();
+
+  useEffect(() => {
+    if (!gasQuery.isLoading) {
+      setGas(gasQuery.data);
+    }
+  }, [gasQuery.isLoading]);
 
   return (
     <Box sx={{ flexGrow: 1 }}>

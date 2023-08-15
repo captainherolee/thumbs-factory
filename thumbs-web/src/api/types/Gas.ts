@@ -1,6 +1,6 @@
 export interface IGas {
   connectionStatus: number;
   realTimeUsage: number;
-  montlyUsage: number;
+  monthlyUsage: number;
   cumulativeUsage: number;
 }

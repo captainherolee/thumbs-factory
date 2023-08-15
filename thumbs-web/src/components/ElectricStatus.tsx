@@ -6,10 +6,13 @@ import Grid from '@mui/material/Grid';
 import { Typography, Avatar, Divider } from '@mui/material';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import { GetStatusColor } from '@utils/convert';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PowerBarChart from '@componets/BarChart';
 import ElectricTableContents from '@componets/TableContents';
 import { BasicBorderColor, ConnectionStatus } from '@utils/constant';
+import { useGetElectricity } from '@hooks/electicity';
+import { useRecoilState } from 'recoil';
+import { electricityAtom } from '@stores/electricity';
 
 interface ElectricStatusProps {
   status: number;
@@ -26,7 +29,15 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function ElectricStatus({ status }: ElectricStatusProps) {
   const statusColor = GetStatusColor(status);
   const [commValue, setCommValue] = useState(ConnectionStatus.Loading);
-  const [alaramValue, setAlaramValue] = useState(60);
+  const [alaramValue, setAlaramValue] = useState(0);
+  const [electricityValue, setElectricity] = useRecoilState(electricityAtom);
+  const electricityQuery = useGetElectricity();
+
+  useEffect(() => {
+    if (!electricityQuery.isLoading) {
+      setElectricity(electricityQuery.data);
+    }
+  }, [electricityQuery.isLoading]);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
