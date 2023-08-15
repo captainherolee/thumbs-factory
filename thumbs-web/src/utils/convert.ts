@@ -1,8 +1,12 @@
+import { StatusColorError, StatusColorLoading, StatusColorNormal } from './constant';
+
 export function GetStatusColor(status: number) {
   switch (status) {
     case 0:
-      return 'red'; // Define your warning color here
+      return StatusColorError;
+    case 1:
+      return StatusColorNormal;
     default:
-      return '#75FB4C'; // Define your normal color here
+      return StatusColorLoading;
   }
 }

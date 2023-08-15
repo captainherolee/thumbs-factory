@@ -9,13 +9,14 @@ import ElectricStatus from '@componets/ElectricStatus';
 import GasStatus from '@componets/GasStatus';
 import RealTimeMonitoringChart from '@componets/RealtimeGraph';
 import { useGetElectricityStatus } from '@hooks/electicity';
-import { useEffect, useState } from 'react';
 import { useGetGasStatus } from '@hooks/gas';
+import { BackGroundColor, BasicBorderColor, BasicLetterColor, PointColor } from '@utils/constant';
+import { useEffect, useState } from 'react';
 
-export default function LabTabs() {
+export default function CustomTabs() {
   const [value, setValue] = useState('1');
-  const [electricityStatus, setElectricityStatus] = useState(0);
-  const [gasStatus, setGasStatus] = useState(0);
+  const [electricityStatus, setElectricityStatus] = useState(2);
+  const [gasStatus, setGasStatus] = useState(2);
   const electricStatusQuery = useGetElectricityStatus();
   const gasStatusQuery = useGetGasStatus();
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -24,46 +25,49 @@ export default function LabTabs() {
 
   useEffect(() => {
     if (!electricStatusQuery.isLoading) {
+      console.log(electricStatusQuery.data);
       setElectricityStatus(electricStatusQuery.data);
     }
   }, [electricStatusQuery.isLoading]);
+
   useEffect(() => {
     if (!gasStatusQuery.isLoading) {
+      console.log(gasStatusQuery.data);
       setGasStatus(gasStatusQuery.data);
     }
   }, [gasStatusQuery.isLoading]);
 
   return (
-    <Box sx={{ width: '100%', typography: 'body', backgroundColor: '#20658B' }}>
+    <Box sx={{ width: '100%', typography: 'body', backgroundColor: BackGroundColor }}>
       <TabContext value={value}>
         <Box>
           <TabList
             onChange={handleChange}
             aria-label="Main Tabs"
-            TabIndicatorProps={{ style: { background: '#6DE2AE' } }}
+            TabIndicatorProps={{ style: { background: PointColor } }}
             sx={{
-              backgroundColor: '#24365B',
+              backgroundColor: BackGroundColor,
               '.Mui-selected': {
-                color: '#6DE2AE',
+                color: PointColor,
               },
               '.MuiTab-root.Mui-selected': {
-                color: '#6DE2AE',
+                color: PointColor,
               },
             }}
           >
-            <Tab label="전력 상태" value="1" sx={{ fontWeight: 700, fontSize: '1.0rem', color: 'white' }} />
-            <Tab label="가스 상태" value="2" sx={{ fontWeight: 700, fontSize: '1.0rem', color: 'white' }} />
-            <Tab label="실시간 모니터링" value="3" sx={{ fontWeight: 700, fontSize: '1.0rem', color: 'white' }} />
+            <Tab label="전력 상태" value="1" sx={{ fontWeight: 700, fontSize: '1.0rem', color: BasicLetterColor }} />
+            <Tab label="가스 상태" value="2" sx={{ fontWeight: 700, fontSize: '1.0rem', color: BasicLetterColor }} />
+            <Tab label="실시간 모니터링" value="3" sx={{ fontWeight: 700, fontSize: '1.0rem', color: BasicLetterColor }} />
           </TabList>
         </Box>
-        <TabPanel value="1" sx={{ backgroundColor: '#24365B', color: 'white' }}>
+        <TabPanel value="1" sx={{ backgroundColor: BackGroundColor, color: BasicLetterColor }}>
           <ElectricStatus status={electricityStatus} />
         </TabPanel>
-        <TabPanel value="2" sx={{ backgroundColor: '#24365B', color: 'white' }}>
+        <TabPanel value="2" sx={{ backgroundColor: BackGroundColor, color: BasicLetterColor }}>
           <GasStatus status={gasStatus} />
         </TabPanel>
-        <TabPanel value="3" sx={{ backgroundColor: '#24365B', color: 'white' }}>
-          <Typography variant="h6" sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <TabPanel value="3" sx={{ backgroundColor: BackGroundColor, color: BasicLetterColor }}>
+          <Typography variant="h6" sx={{ borderBottom: 1, borderColor: BasicBorderColor }}>
             실시간 모니터링(초)
           </Typography>
           <RealTimeMonitoringChart />

@@ -7,16 +7,16 @@ import { Typography, Avatar, Divider } from '@mui/material';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import { GetStatusColor } from '@utils/convert';
 import { useState } from 'react';
-import Loading from '@componets/CircularIndeterminate';
 import PowerBarChart from '@componets/BarChart';
 import ElectricTableContents from '@componets/TableContents';
+import { BasicBorderColor, ConnectionStatus } from '@utils/constant';
 
 interface ElectricStatusProps {
   status: number;
 }
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  backgroundColor: BasicBorderColor,
   ...theme.typography.body2,
   padding: theme.spacing(2),
   textAlign: 'center',
@@ -25,7 +25,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function ElectricStatus({ status }: ElectricStatusProps) {
   const statusColor = GetStatusColor(status);
-  const [commValue, setCommValue] = useState('');
+  const [commValue, setCommValue] = useState(ConnectionStatus.Loading);
   const [alaramValue, setAlaramValue] = useState(60);
 
   return (
@@ -43,19 +43,19 @@ export default function ElectricStatus({ status }: ElectricStatusProps) {
         <Grid item xs={12}>
           <PowerBarChart />
         </Grid>
-        <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor }}>
           <Typography variant="h6">유효전력</Typography>
           <Typography variant="h6" sx={{ textAlign: 'right' }}>
             0
           </Typography>
         </Grid>
-        <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor }}>
           <Typography variant="h6">최대수요</Typography>
           <Typography variant="h6" sx={{ textAlign: 'right' }}>
             100
           </Typography>
         </Grid>
-        <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor }}>
           <Typography variant="h6">무효전력</Typography>
           <Typography variant="h6" sx={{ textAlign: 'right' }}>
             70
@@ -66,37 +66,37 @@ export default function ElectricStatus({ status }: ElectricStatusProps) {
         </Grid>
 
         <Grid item xs={12}>
-          <Divider sx={{ my: 2, backgroundColor: 'white', height: '1.5px' }} />
+          <Divider sx={{ my: 2, backgroundColor: BasicBorderColor, height: '1.5px' }} />
           <Typography sx={{ fontSize: '1rem', textAlign: 'right' }}>알람 설정 %{alaramValue}</Typography>
         </Grid>
         <Grid item xs={12}>
           <PowerBarChart />
         </Grid>
-        <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor }}>
           <Typography variant="h6">2023년 6월 계약전력량</Typography>
           <Typography variant="h6" sx={{ textAlign: 'right' }}>
             100 kw
           </Typography>
         </Grid>
-        <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor }}>
           <Typography variant="h6">2023년 6월 무효전력량</Typography>
           <Typography variant="h6" sx={{ textAlign: 'right' }}>
             40 kw
           </Typography>
         </Grid>
-        <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor }}>
           <Typography variant="h6">2023년 6월 유효전력량</Typography>
           <Typography variant="h6" sx={{ textAlign: 'right' }}>
             0 kw
           </Typography>
         </Grid>
-        <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor }}>
           <Typography variant="h6">누적 무효전력량</Typography>
           <Typography variant="h6" sx={{ textAlign: 'right' }}>
             0 kw
           </Typography>
         </Grid>
-        <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor }}>
           <Typography variant="h6">누적 유효전력량</Typography>
           <Typography variant="h6" sx={{ textAlign: 'right' }}>
             0 kw
