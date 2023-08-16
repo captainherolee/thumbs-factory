@@ -12,15 +12,15 @@ const defaultElectricityDetail: IElectricityDetail = {
   nV: 0,
 };
 
-const defaultElectricity: IElectricity = {
+export const defaultElectricity: IElectricity = {
   connectionStatus: 0,
-  mdAlarmSetValue: 0,
-  activePower: 0,
-  maximumDemand: 0,
+  mdAlarmSetValue: 60,
+  activePower: 1500,
+  maximumDemand: 5000,
   reactivePower: 0,
-  cpAlarmSetValue: 0,
-  monthlyContractPower: 0,
-  monthlyReactivePower: 0,
+  cpAlarmSetValue: 60,
+  monthlyContractPower: 100,
+  monthlyReactivePower: 60,
   monthlyActivePower: 0,
   cumulativeReactivePower: 0,
   cumulativeActivePower: 0,

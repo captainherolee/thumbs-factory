@@ -1,7 +1,7 @@
 import { IGas } from '@api/types/Gas';
 import { atom } from 'recoil';
 
-const defaultGas: IGas = {
+export const defaultGas: IGas = {
   connectionStatus: 0,
   realTimeUsage: 0,
   monthlyUsage: 0,

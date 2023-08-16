@@ -1,5 +1,7 @@
 import React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { useRecoilValue } from 'recoil';
+import { electricityAtom } from '@stores/electricity';
 
 interface RowData {
   id: number;
@@ -16,17 +18,32 @@ const rows: RowData[] = [
 ];
 
 export default function CustomTable() {
+  const electricityValue = useRecoilValue(electricityAtom);
+
   return (
     <TableContainer component={Paper} sx={{ backgroundColor: 'transparent' }}>
       <Table>
         <TableBody>
-          {rows.map((row, index) => (
-            <TableRow key={row.id}>
-              <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>{row.col1}</TableCell>
-              <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>{row.col2}</TableCell>
-              <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>{row.col3}</TableCell>
-            </TableRow>
-          ))}
+          <TableRow>
+            <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>R</TableCell>
+            <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>{electricityValue.detail.rA} A</TableCell>
+            <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>{electricityValue.detail.rV} V</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>S</TableCell>
+            <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>{electricityValue.detail.sA} A</TableCell>
+            <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>{electricityValue.detail.sV} V</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>T</TableCell>
+            <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>{electricityValue.detail.tA} A</TableCell>
+            <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>{electricityValue.detail.tV} V</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>N</TableCell>
+            <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>{electricityValue.detail.nA} A</TableCell>
+            <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>{electricityValue.detail.nV} V</TableCell>
+          </TableRow>
         </TableBody>
       </Table>
     </TableContainer>

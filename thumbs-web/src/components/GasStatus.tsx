@@ -6,10 +6,10 @@ import Grid from '@mui/material/Grid';
 import { useState, useEffect } from 'react';
 import { Typography, Avatar } from '@mui/material';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-import { GetStatusColor } from '@utils/convert';
+import { ConvertStatusString, GetStatusColor } from '@utils/convert';
 import { BasicBorderColor, ConnectionStatus } from '@utils/constant';
 import { useRecoilState } from 'recoil';
-import { gasAtom } from '@stores/gas';
+import { defaultGas, gasAtom } from '@stores/gas';
 import { useGetGas } from '@hooks/gas';
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -27,13 +27,16 @@ interface GasStatusProps {
 export default function GasStatus({ status }: GasStatusProps) {
   const statusColor = GetStatusColor(status);
   const [commValue, setCommValue] = useState(ConnectionStatus.Loading);
-  const [alaramValue, setAlaramValue] = useState(60);
   const [gasValue, setGas] = useRecoilState(gasAtom);
   const gasQuery = useGetGas();
+  const currentDate = new Date();
+  const formattedDate = `${currentDate.getFullYear()}년 ${currentDate.getMonth() + 1}월`;
 
   useEffect(() => {
     if (!gasQuery.isLoading) {
-      setGas(gasQuery.data);
+      //for test
+      setGas(defaultGas);
+      //setGas(gasQuery.data);
     }
   }, [gasQuery.isLoading]);
 
@@ -44,24 +47,24 @@ export default function GasStatus({ status }: GasStatusProps) {
           <Avatar sx={{ marginRight: 1, backgroundColor: statusColor, width: '1rem', height: '1rem' }}>
             <FiberManualRecordIcon sx={{ fontSize: 'small', color: statusColor }} />
           </Avatar>
-          <Typography variant="h6">가스 ({commValue})</Typography>
+          <Typography variant="h6">가스 ({ConvertStatusString(commValue)})</Typography>
         </Grid>
         <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor }}>
           <Typography variant="h6">실시간 사용량</Typography>
           <Typography variant="h6" sx={{ textAlign: 'right' }}>
-            0
+            {gasValue.realTimeUsage}
           </Typography>
         </Grid>
         <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor }}>
-          <Typography variant="h6">2023년 6월 사용량 (보정 부피)</Typography>
+          <Typography variant="h6">{formattedDate} 사용량 (보정 부피)</Typography>
           <Typography variant="h6" sx={{ textAlign: 'right' }}>
-            0
+            {gasValue.monthlyUsage}
           </Typography>
         </Grid>
         <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor }}>
           <Typography variant="h6">누적 가스 사용량(보정 부피)</Typography>
           <Typography variant="h6" sx={{ textAlign: 'right' }}>
-            0
+            {gasValue.cumulativeUsage}
           </Typography>
         </Grid>
       </Grid>

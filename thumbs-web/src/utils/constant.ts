@@ -1,5 +1,6 @@
 export const BackGroundColor = '#24365B';
 export const PointColor = '#6DE2AE';
+export const PointOverColor = '#ff0000';
 export const BasicLetterColor = '#ffffff';
 export const BasicBorderColor = '#ffffff';
 
