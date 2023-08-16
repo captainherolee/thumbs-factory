@@ -8,11 +8,11 @@ function ElectricActions() {
   };
 
   async function getElectricityStatus() {
-    const response = await apiClient.get<number>(`/electricity/status`);
+    const response = await apiClient.get<number>(`/api/v1/electricity/status`);
     return response.data;
   }
   async function getElectricity() {
-    const response = await apiClient.get<IElectricity>(`/electricity`);
+    const response = await apiClient.get<IElectricity>(`/api/v1/electricity`);
     return response.data;
   }
 }

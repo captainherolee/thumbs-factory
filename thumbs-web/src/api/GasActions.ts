@@ -8,11 +8,11 @@ function GasActions() {
   };
 
   async function getGasStatus() {
-    const response = await apiClient.get<number>(`/gas/status`);
+    const response = await apiClient.get<number>(`/api/v1/gas/status`);
     return response.data;
   }
   async function getGas() {
-    const response = await apiClient.get<IGas>(`/gas`);
+    const response = await apiClient.get<IGas>(`/api/v1/gas`);
     return response.data;
   }
 }
