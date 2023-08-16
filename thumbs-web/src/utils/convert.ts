@@ -23,5 +23,5 @@ export function ConvertStatusString(status: number) {
 }
 
 export function ConvertBarGraphMax(value: number) {
-  return Math.floor(value * 1.13);
+  return Math.floor(value * 1.3);
 }
