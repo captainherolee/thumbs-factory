@@ -6,7 +6,7 @@ function PingActions() {
   };
 
   async function getPing() {
-    const response = await apiClient.get<Boolean>(`/api/v1/ping`);
+    const response = await apiClient.get<Boolean>(`/ping`);
     return response.data;
   }
 }
