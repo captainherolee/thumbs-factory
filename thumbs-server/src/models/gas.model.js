@@ -29,4 +29,4 @@ Gas.get = (result) => {
   );
 };
 
-module.exports = Electricity;
+module.exports = Gas;
