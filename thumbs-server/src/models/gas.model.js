@@ -21,4 +21,15 @@ Gas.get = async (result) => {
   }
 };
 
+Gas.getStatus = async (result) => {
+  const rows = await sql.query("SELECT G_Connect FROM VIEW");
+
+  if (rows && rows.length > 0) {
+    const gasStatus = rows[0];
+    result(null, gasStatus);
+  } else {
+    result(null);
+  }
+};
+
 module.exports = Gas;
