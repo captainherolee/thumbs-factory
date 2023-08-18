@@ -11,3 +11,15 @@ exports.all = (req, res) => {
     }
   });
 };
+
+exports.status = (req, res) => {
+  Gas.getStatus((err, data) => {
+    if (err)
+      res.status(500).send({
+        message: err.message || "Some error occurred while retrieving gas.",
+      });
+    else {
+      res.send(data);
+    }
+  });
+};

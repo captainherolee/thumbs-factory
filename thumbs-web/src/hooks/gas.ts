@@ -1,5 +1,5 @@
 import { GasActions } from '@api/GasActions';
-import { IGas } from '@api/types/Gas';
+import { IGas, IGasStatus } from '@api/types/Gas';
 import { useQuery } from 'react-query';
 
 const useGetGas = () => {
@@ -11,7 +11,7 @@ const useGetGas = () => {
 
 const useGetGasStatus = () => {
   const gasActions = GasActions();
-  return useQuery<number, Error>('query-gasStatus', async () => gasActions.getGasStatus(), {
+  return useQuery<IGasStatus, Error>('query-gasStatus', async () => gasActions.getGasStatus(), {
     retry: 1,
   });
 };

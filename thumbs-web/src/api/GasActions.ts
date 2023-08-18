@@ -1,5 +1,5 @@
 import { apiClient } from '@utils/client';
-import { IGas } from '@api/types/Gas';
+import { IGas, IGasStatus } from '@api/types/Gas';
 
 function GasActions() {
   return {
@@ -8,7 +8,7 @@ function GasActions() {
   };
 
   async function getGasStatus() {
-    const response = await apiClient.get<number>(`/gas/status`);
+    const response = await apiClient.get<IGasStatus>(`/gas/status`);
     return response.data;
   }
   async function getGas() {

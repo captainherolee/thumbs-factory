@@ -1,5 +1,5 @@
 import { apiClient } from '@utils/client';
-import { IElectricity } from '@api/types/Electricity';
+import { IElectricity, IElectricityStatus } from '@api/types/Electricity';
 
 function ElectricActions() {
   return {
@@ -8,7 +8,7 @@ function ElectricActions() {
   };
 
   async function getElectricityStatus() {
-    const response = await apiClient.get<number>(`/electricity/status`);
+    const response = await apiClient.get<IElectricityStatus>(`/electricity/status`);
     return response.data;
   }
   async function getElectricity() {

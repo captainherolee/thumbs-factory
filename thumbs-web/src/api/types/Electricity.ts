@@ -23,3 +23,7 @@ export interface IElectricityDetail {
   tV: number;
   nV: number;
 }
+
+export interface IElectricityStatus {
+  E_Connect: number;
+}

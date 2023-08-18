@@ -50,4 +50,14 @@ Electricity.get = async (result) => {
   }
 };
 
+Electricity.getStatus = async (result) => {
+  const rows = await sql.query("SELECT E_Connect FROM VIEW");
+  if (rows && rows.length > 0) {
+    const electricityStatus = rows[0];
+    result(null, electricityStatus);
+  } else {
+    result(null);
+  }
+};
+
 module.exports = Electricity;

@@ -37,9 +37,7 @@ export default function ElectricStatus({ status }: ElectricStatusProps) {
 
   useEffect(() => {
     if (!electricityQuery.isLoading) {
-      // for test
-      setElectricity(defaultElectricity);
-      //setElectricity(electricityQuery.data);
+      setElectricity(electricityQuery.data);
     }
   }, [electricityQuery.isLoading]);
 
@@ -50,7 +48,7 @@ export default function ElectricStatus({ status }: ElectricStatusProps) {
           <Avatar sx={{ marginRight: 1, backgroundColor: statusColor, width: '1rem', height: '1rem' }}>
             <FiberManualRecordIcon sx={{ fontSize: 'small', color: statusColor }} />
           </Avatar>
-          <Typography variant="h6">전력 ({ConvertStatusString(commValue)})</Typography>
+          <Typography variant="h6">전력 ({ConvertStatusString(status)})</Typography>
         </Grid>
         <Grid item xs={12}>
           <Typography sx={{ fontSize: '1rem', textAlign: 'right' }}>알람 설정 %{electricityValue.mdAlarmSetValue}</Typography>

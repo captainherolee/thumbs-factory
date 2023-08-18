@@ -1,5 +1,5 @@
 import { ElectricActions } from '@api/ElectricityActions';
-import { IElectricity } from '@api/types/Electricity';
+import { IElectricity, IElectricityStatus } from '@api/types/Electricity';
 import { useQuery } from 'react-query';
 
 const useGetElectricity = () => {
@@ -11,7 +11,7 @@ const useGetElectricity = () => {
 
 const useGetElectricityStatus = () => {
   const electricityActions = ElectricActions();
-  return useQuery<number, Error>('query-electricityStatus', async () => electricityActions.getElectricityStatus(), {
+  return useQuery<IElectricityStatus, Error>('query-electricityStatus', async () => electricityActions.getElectricityStatus(), {
     retry: 1,
   });
 };

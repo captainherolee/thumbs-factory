@@ -34,9 +34,7 @@ export default function GasStatus({ status }: GasStatusProps) {
 
   useEffect(() => {
     if (!gasQuery.isLoading) {
-      //for test
-      setGas(defaultGas);
-      //setGas(gasQuery.data);
+      setGas(gasQuery.data);
     }
   }, [gasQuery.isLoading]);
 
@@ -47,7 +45,7 @@ export default function GasStatus({ status }: GasStatusProps) {
           <Avatar sx={{ marginRight: 1, backgroundColor: statusColor, width: '1rem', height: '1rem' }}>
             <FiberManualRecordIcon sx={{ fontSize: 'small', color: statusColor }} />
           </Avatar>
-          <Typography variant="h6">가스 ({ConvertStatusString(commValue)})</Typography>
+          <Typography variant="h6">가스 ({ConvertStatusString(status)})</Typography>
         </Grid>
         <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor }}>
           <Typography variant="h6">실시간 사용량</Typography>

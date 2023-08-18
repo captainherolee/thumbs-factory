@@ -18,6 +18,7 @@ export default function CustomTabs() {
   const [electricityStatus, setElectricityStatus] = useState(2);
   const [gasStatus, setGasStatus] = useState(2);
   const electricStatusQuery = useGetElectricityStatus();
+
   const gasStatusQuery = useGetGasStatus();
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -25,15 +26,15 @@ export default function CustomTabs() {
 
   useEffect(() => {
     if (!electricStatusQuery.isLoading) {
-      console.log(electricStatusQuery.data);
-      setElectricityStatus(electricStatusQuery.data);
+      console.log(electricStatusQuery.data.E_Connect);
+      setElectricityStatus(electricStatusQuery.data.E_Connect);
     }
   }, [electricStatusQuery.isLoading]);
 
   useEffect(() => {
     if (!gasStatusQuery.isLoading) {
-      console.log(gasStatusQuery.data);
-      setGasStatus(gasStatusQuery.data);
+      console.log(gasStatusQuery.data.G_Connect);
+      setGasStatus(gasStatusQuery.data.G_Connect);
     }
   }, [gasStatusQuery.isLoading]);
 

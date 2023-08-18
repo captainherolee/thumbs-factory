@@ -4,3 +4,7 @@ export interface IGas {
   monthlyUsage: number;
   cumulativeUsage: number;
 }
+
+export interface IGasStatus {
+  G_Connect: number;
+}
