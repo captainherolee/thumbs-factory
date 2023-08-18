@@ -8,6 +8,7 @@ const pool = mariadb.createPool({
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
+  connectionLimit: 10,
 });
 
 pool.getConnection((error, connection) => {
@@ -15,7 +16,7 @@ pool.getConnection((error, connection) => {
     throw error;
   }
   console.log("Successfully connected to the database.");
-  connection.release(); // 커넥션 사용 후 반드시 반환
+  connection.release();
 });
 
-module.exports = pool; // 커넥션 객체가 아니라 풀 객체를 내보냄
+module.exports = pool;

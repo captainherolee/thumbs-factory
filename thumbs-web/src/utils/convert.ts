@@ -14,11 +14,11 @@ export function GetStatusColor(status: number) {
 export function ConvertStatusString(status: number) {
   switch (status) {
     case 0:
-      return '통신정상';
-    case 1:
-      return '연결 중';
-    default:
       return '통신 비정상';
+    case 1:
+      return '통신정상';
+    default:
+      return '연결 중';
   }
 }
 

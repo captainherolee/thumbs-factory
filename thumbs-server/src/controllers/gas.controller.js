@@ -6,6 +6,8 @@ exports.all = (req, res) => {
       res.status(500).send({
         message: err.message || "Some error occurred while retrieving gas.",
       });
-    else res.send(data);
+    else {
+      res.send(data);
+    }
   });
 };
