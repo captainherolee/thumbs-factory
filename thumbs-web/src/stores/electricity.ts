@@ -24,7 +24,7 @@ export const defaultElectricity: IElectricity = {
   monthlyActivePower: 0,
   cumulativeReactivePower: 0,
   cumulativeActivePower: 0,
-  detail: defaultElectricityDetail,
+  electricityDetail: defaultElectricityDetail,
 };
 
 export const electricityAtom = atom<IElectricity>({

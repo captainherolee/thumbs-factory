@@ -10,7 +10,7 @@ export interface IElectricity {
   monthlyActivePower: number;
   cumulativeReactivePower: number;
   cumulativeActivePower: number;
-  detail: IElectricityDetail;
+  electricityDetail: IElectricityDetail;
 }
 
 export interface IElectricityDetail {
