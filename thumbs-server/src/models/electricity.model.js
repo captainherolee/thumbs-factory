@@ -37,26 +37,34 @@ const Electricity = function (electricity) {
 
 // electricity
 Electricity.get = async (result) => {
-  const rows = await sql.query(
-    "SELECT E_Connect, E_AlarmSet_MD, E_ActivePower, E_MaximumDemand, E_ReactivePower, RA, SA, TA, NA, RV, SV, TV, NV, E_AlarmSet_CP, E_MonthlyContractPower, E_MonthlyReactivePower, E_MonthlyActivePower, E_CumulativeReactivePower, E_CumulativeActivePower FROM VIEW"
-  );
+  try {
+    const rows = await sql.query(
+      "SELECT E_Connect, E_AlarmSet_MD, E_ActivePower, E_MaximumDemand, E_ReactivePower, RA, SA, TA, NA, RV, SV, TV, NV, E_AlarmSet_CP, E_MonthlyContractPower, E_MonthlyReactivePower, E_MonthlyActivePower, E_CumulativeReactivePower, E_CumulativeActivePower FROM VIEW"
+    );
 
-  if (rows && rows.length > 0) {
-    const electricityData = rows[0];
-    const electricity = new Electricity(electricityData);
-    result(null, electricity);
-  } else {
-    result(null);
+    if (rows && rows.length > 0) {
+      const electricityData = rows[0];
+      const electricity = new Electricity(electricityData);
+      result(null, electricity);
+    } else {
+      result(null);
+    }
+  } catch (error) {
+    result(error);
   }
 };
 
 Electricity.getStatus = async (result) => {
-  const rows = await sql.query("SELECT E_Connect FROM VIEW");
-  if (rows && rows.length > 0) {
-    const electricityStatus = rows[0];
-    result(null, electricityStatus);
-  } else {
-    result(null);
+  try {
+    const rows = await sql.query("SELECT E_Connect FROM VIEW");
+    if (rows && rows.length > 0) {
+      const electricityStatus = rows[0];
+      result(null, electricityStatus);
+    } else {
+      result(null);
+    }
+  } catch (error) {
+    result(error);
   }
 };
 

@@ -17,6 +17,7 @@ app.get("/ping", (req, res) => {
 
 require("./src/routes/electricity.routes.js")(app);
 require("./src/routes/gas.routes.js")(app);
+require("./src/routes/log.routes.js")(app);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}.`);
