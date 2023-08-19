@@ -17,7 +17,7 @@ export default function App() {
     if (!serverConnectionQuery.isLoading) {
       setConnectionValue(ConnectionStatus.Loading);
       if (serverConnectionQuery.error) {
-        setConnectionValue(ConnectionStatus.Normal);
+        setConnectionValue(ConnectionStatus.Error);
       } else {
         setConnectionValue(ConnectionStatus.Normal);
       }

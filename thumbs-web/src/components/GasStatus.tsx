@@ -26,7 +26,6 @@ interface GasStatusProps {
 
 export default function GasStatus({ status }: GasStatusProps) {
   const statusColor = GetStatusColor(status);
-  const [commValue, setCommValue] = useState(ConnectionStatus.Loading);
   const [gasValue, setGas] = useRecoilState(gasAtom);
   const gasQuery = useGetGas();
   const currentDate = new Date();

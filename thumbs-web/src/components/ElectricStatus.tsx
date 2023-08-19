@@ -13,7 +13,7 @@ import ElectricTableContents from '@componets/TableContents';
 import { BasicBorderColor, ConnectionStatus } from '@utils/constant';
 import { useGetElectricity } from '@hooks/electicity';
 import { useRecoilState } from 'recoil';
-import { defaultElectricity, electricityAtom } from '@stores/electricity';
+import { electricityAtom } from '@stores/electricity';
 
 interface ElectricStatusProps {
   status: number;
@@ -29,7 +29,6 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function ElectricStatus({ status }: ElectricStatusProps) {
   const statusColor = GetStatusColor(status);
-  const [commValue, setCommValue] = useState(ConnectionStatus.Loading);
   const [electricityValue, setElectricity] = useRecoilState(electricityAtom);
   const electricityQuery = useGetElectricity();
   const currentDate = new Date();
@@ -37,7 +36,10 @@ export default function ElectricStatus({ status }: ElectricStatusProps) {
 
   useEffect(() => {
     if (!electricityQuery.isLoading) {
-      setElectricity(electricityQuery.data);
+      if (electricityQuery.isFetched) {
+        console.log(electricityQuery.data);
+        setElectricity(electricityQuery.data);
+      }
     }
   }, [electricityQuery.isLoading]);
 

@@ -2,13 +2,13 @@ import { IElectricity, IElectricityDetail } from '@api/types/Electricity';
 import { atom } from 'recoil';
 
 const defaultElectricityDetail: IElectricityDetail = {
-  rA: 0,
-  sA: 0,
-  tA: 0,
-  nA: 0,
-  rV: 0,
-  sV: 0,
-  tV: 0,
+  rA: 0.0,
+  sA: 0.0,
+  tA: 0.0,
+  nA: 0.0,
+  rV: 0.0,
+  sV: 0.0,
+  tV: 0.0,
 };
 
 export const defaultElectricity: IElectricity = {
@@ -30,4 +30,8 @@ export const defaultElectricity: IElectricity = {
 export const electricityAtom = atom<IElectricity>({
   key: 'electricityValue',
   default: defaultElectricity,
+});
+export const electricityStatusAtom = atom<number>({
+  key: 'electricityStatus',
+  default: 2,
 });

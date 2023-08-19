@@ -12,11 +12,14 @@ import { useGetElectricityStatus } from '@hooks/electicity';
 import { useGetGasStatus } from '@hooks/gas';
 import { BackGroundColor, BasicBorderColor, BasicLetterColor, PointColor } from '@utils/constant';
 import { useEffect, useState } from 'react';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { gasAtom, gasStatusAtom } from '@stores/gas';
+import { electricityStatusAtom } from '@stores/electricity';
 
 export default function CustomTabs() {
   const [value, setValue] = useState('1');
-  const [electricityStatus, setElectricityStatus] = useState(2);
-  const [gasStatus, setGasStatus] = useState(2);
+  const [gasStatus, setGasStatus] = useRecoilState(gasStatusAtom);
+  const [electricityStatus, setElectricityStatus] = useRecoilState(electricityStatusAtom);
   const electricStatusQuery = useGetElectricityStatus();
 
   const gasStatusQuery = useGetGasStatus();
@@ -26,15 +29,19 @@ export default function CustomTabs() {
 
   useEffect(() => {
     if (!electricStatusQuery.isLoading) {
-      console.log(electricStatusQuery.data.E_Connect);
-      setElectricityStatus(electricStatusQuery.data.E_Connect);
+      if (electricStatusQuery.isFetched) {
+        console.log(electricStatusQuery.data.E_Connect);
+        setElectricityStatus(electricStatusQuery.data.E_Connect);
+      }
     }
   }, [electricStatusQuery.isLoading]);
 
   useEffect(() => {
     if (!gasStatusQuery.isLoading) {
-      console.log(gasStatusQuery.data.G_Connect);
-      setGasStatus(gasStatusQuery.data.G_Connect);
+      if (gasStatusQuery.isFetched) {
+        console.log(gasStatusQuery.data.G_Connect);
+        setGasStatus(gasStatusQuery.data.G_Connect);
+      }
     }
   }, [gasStatusQuery.isLoading]);
 

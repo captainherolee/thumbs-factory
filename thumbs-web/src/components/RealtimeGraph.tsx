@@ -1,64 +1,92 @@
 import React, { useState, useEffect } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import { ILog } from '@api/types/Log';
+import { useGetLog } from '@hooks/log';
 
 interface DataEntry {
-  time: Date;
-  value: number;
+  time: string;
+  electricityMaximumDemand: number;
+  electricityActivePower: number;
+  electricityReactivePower: number;
+  gasUsage: number;
 }
 
-const initialData: DataEntry[] = [];
-
 const RealTimeMonitoringChart: React.FC = () => {
-  const [data, setData] = useState<DataEntry[]>(initialData);
+  const [data, setData] = useState<DataEntry[]>([]);
+  const logQuery = useGetLog();
 
   useEffect(() => {
-    const fetchData = () => {
-      const currentTime = new Date();
-      const newData = [];
+    if (logQuery.data) {
+      const newData: DataEntry[] = logQuery.data
+        .slice(0, 60)
+        .map((entry: ILog) => ({
+          time: new Date(entry.time).toLocaleTimeString('en-US', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false,
+          }),
+          electricityMaximumDemand: entry.electricityMaximumDemand,
+          electricityActivePower: entry.electricityActivePower,
+          electricityReactivePower: entry.electricityReactivePower,
+          gasUsage: entry.gasUsage,
+        }))
+        .reverse();
 
-      // Generate data for the last 1 minute with 1-second intervals
-      for (let i = 0; i < 60; i += 1) {
-        // 60 intervals
-        const time = new Date(currentTime.getTime() - i * 1000); // Subtract milliseconds
-        const newValue = Math.floor(Math.random() * 5000);
-        newData.push({ time, value: newValue });
+      setData(newData);
+    }
+  }, [logQuery.data]);
+
+  const maxLeftYDomain = data.length > 0 ? Math.max(...data.map((entry) => entry.electricityMaximumDemand)) * 1.3 : 100;
+  const maxRightYDomain = data.length > 0 ? Math.max(...data.map((entry) => entry.gasUsage)) * 1.3 : 100;
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (logQuery.data) {
+        const newData: DataEntry[] = logQuery.data
+          .slice(0, 60)
+          .map((entry: ILog) => ({
+            time: new Date(entry.time).toLocaleTimeString('en-US', {
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit',
+              hour: '2-digit',
+              minute: '2-digit',
+              second: '2-digit',
+              hour12: false,
+            }),
+            electricityMaximumDemand: entry.electricityMaximumDemand,
+            electricityActivePower: entry.electricityActivePower,
+            electricityReactivePower: entry.electricityReactivePower,
+            gasUsage: entry.gasUsage,
+          }))
+          .reverse();
+
+        setData(newData);
       }
-
-      setData(newData.reverse()); // Reverse data for chronological order
-    };
-
-    fetchData(); // Fetch data immediately
-    const interval = setInterval(fetchData, 1000); // Update every 3 seconds
+    }, 3000);
 
     return () => clearInterval(interval);
-  }, []);
-
-  const formattedTime = (time: Date) => {
-    const seconds = time.getSeconds();
-    if (seconds % 3 === 0) {
-      // Display label only for every 10 seconds
-      return time.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
-    }
-    return ''; // Hide label for other seconds
-  };
+  }, [logQuery.data]);
 
   return (
-    <ResponsiveContainer width="100%" height={500}>
-      <LineChart data={data} margin={{ top: 20, right: 10, left: -15, bottom: 100 }}>
+    <ResponsiveContainer width="100%" height={550}>
+      <LineChart data={data} margin={{ top: 20, right: -20, left: -30, bottom: 100 }}>
         <CartesianGrid strokeDasharray="3 3" stroke="#fff" />
-        <XAxis
-          dataKey="time"
-          interval={0} // No interval between x-axis labels
-          tickFormatter={formattedTime}
-          angle={-90}
-          dx={-5}
-          dy={20}
-          stroke="#fff"
-          tick={{ fontSize: 12 }} // Adjust font size for x-axis tick labels
-        />
-        <YAxis domain={[0, 5000]} stroke="#fff" tickCount={10} allowDecimals={false} />
+        <XAxis dataKey="time" interval={1} angle={-90} dx={-5} dy={50} stroke="#fff" tick={{ fontSize: 9 }} />
+        <YAxis domain={[0, maxLeftYDomain]} stroke="#ffff00" tickCount={10} allowDecimals={false} />
+        <YAxis yAxisId="right" orientation="right" domain={[0, maxRightYDomain]} stroke="#6bc8c3" tickCount={10} allowDecimals={false} />
 
-        <Line type="monotone" dataKey="value" stroke="#fff" activeDot={{ r: 8 }} />
+        <Line type="monotone" dataKey="electricityMaximumDemand" stroke="#35F0F5" strokeWidth={2} name="최대수요" dot={false} />
+        <Line type="monotone" dataKey="electricityActivePower" stroke="#ffff00" strokeWidth={2} name="유효전력" dot={false} />
+        <Line type="monotone" dataKey="electricityReactivePower" stroke="#ffc658" strokeWidth={2} name="무효전력" dot={false} />
+        <Line type="monotone" dataKey="gasUsage" stroke="#82ca9d" strokeWidth={2} yAxisId="right" name="가스유량" dot={false} />
+
+        <Tooltip />
+        <Legend verticalAlign="top" wrapperStyle={{ paddingBottom: 20 }} />
       </LineChart>
     </ResponsiveContainer>
   );

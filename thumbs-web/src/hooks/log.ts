@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 const useGetLog = () => {
   const logActions = LogActions();
   return useQuery<ILog[], Error>('query-log', async () => logActions.getLog(), {
-    retry: 1,
+    retry: 3,
   });
 };
 

@@ -12,3 +12,8 @@ export const gasAtom = atom<IGas>({
   key: 'gasValue',
   default: defaultGas,
 });
+
+export const gasStatusAtom = atom<number>({
+  key: 'gasStatus',
+  default: 2,
+});

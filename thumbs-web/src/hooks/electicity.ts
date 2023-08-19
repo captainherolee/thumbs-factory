@@ -5,14 +5,14 @@ import { useQuery } from 'react-query';
 const useGetElectricity = () => {
   const electricityActions = ElectricActions();
   return useQuery<IElectricity, Error>('query-electricity', async () => electricityActions.getElectricity(), {
-    retry: 1,
+    retry: 3,
   });
 };
 
 const useGetElectricityStatus = () => {
   const electricityActions = ElectricActions();
   return useQuery<IElectricityStatus, Error>('query-electricityStatus', async () => electricityActions.getElectricityStatus(), {
-    retry: 1,
+    retry: 3,
   });
 };
 
