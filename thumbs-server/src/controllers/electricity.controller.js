@@ -15,7 +15,8 @@ exports.status = (req, res) => {
   Electricity.getStatus((err, data) => {
     if (err)
       res.status(500).send({
-        message: err.message || "Some error occurred while retrieving gas.",
+        message:
+          err.message || "Some error occurred while retrieving electricity.",
       });
     else {
       res.send(data);
