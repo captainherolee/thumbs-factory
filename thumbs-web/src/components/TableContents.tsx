@@ -25,24 +25,166 @@ export default function CustomTable() {
       <Table>
         <TableBody>
           <TableRow>
-            <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>R</TableCell>
-            <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>{electricityValue.electricityDetail.rA} A</TableCell>
-            <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>{electricityValue.electricityDetail.rV} V</TableCell>
+            <TableCell
+              sx={{
+                fontSize: '1rem',
+                textAlign: 'center',
+                fontWeight: 600,
+                color: 'white',
+                height: '40px',
+                paddingTop: '0px',
+                paddingBottom: '0px',
+                borderBottom: 'none',
+              }}
+            >
+              R
+            </TableCell>
+            <TableCell
+              sx={{
+                fontSize: '1rem',
+                textAlign: 'center',
+                fontWeight: 600,
+                color: 'white',
+                height: '40px',
+                paddingTop: '0px',
+                paddingBottom: '0px',
+                borderBottom: 'none',
+              }}
+            >
+              {electricityValue.electricityDetail.rA} A
+            </TableCell>
+            <TableCell
+              sx={{
+                fontSize: '1rem',
+                textAlign: 'center',
+                fontWeight: 600,
+                color: 'white',
+                height: '40px',
+                paddingTop: '0px',
+                paddingBottom: '0px',
+                borderBottom: 'none',
+              }}
+            >
+              {electricityValue.electricityDetail.rV} V
+            </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>S</TableCell>
-            <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>{electricityValue.electricityDetail.sA} A</TableCell>
-            <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>{electricityValue.electricityDetail.sV} V</TableCell>
+            <TableCell
+              sx={{
+                fontSize: '1rem',
+                textAlign: 'center',
+                fontWeight: 600,
+                color: 'white',
+                height: '40px',
+                paddingTop: '0px',
+                paddingBottom: '0px',
+                borderBottom: 'none',
+              }}
+            >
+              S
+            </TableCell>
+            <TableCell
+              sx={{
+                fontSize: '1rem',
+                textAlign: 'center',
+                fontWeight: 600,
+                color: 'white',
+                height: '40px',
+                paddingTop: '0px',
+                paddingBottom: '0px',
+                borderBottom: 'none',
+              }}
+            >
+              {electricityValue.electricityDetail.sA} A
+            </TableCell>
+            <TableCell
+              sx={{
+                fontSize: '1rem',
+                textAlign: 'center',
+                fontWeight: 600,
+                color: 'white',
+                height: '40px',
+                paddingTop: '0px',
+                paddingBottom: '0px',
+                borderBottom: 'none',
+              }}
+            >
+              {electricityValue.electricityDetail.sV} V
+            </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>T</TableCell>
-            <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>{electricityValue.electricityDetail.tA} A</TableCell>
-            <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>{electricityValue.electricityDetail.tV} V</TableCell>
+            <TableCell
+              sx={{
+                fontSize: '1rem',
+                textAlign: 'center',
+                fontWeight: 600,
+                color: 'white',
+                height: '40px',
+                paddingTop: '0px',
+                paddingBottom: '0px',
+                borderBottom: 'none',
+              }}
+            >
+              T
+            </TableCell>
+            <TableCell
+              sx={{
+                fontSize: '1rem',
+                textAlign: 'center',
+                fontWeight: 600,
+                color: 'white',
+                height: '40px',
+                paddingTop: '0px',
+                paddingBottom: '0px',
+                borderBottom: 'none',
+              }}
+            >
+              {electricityValue.electricityDetail.tA} A
+            </TableCell>
+            <TableCell
+              sx={{
+                fontSize: '1rem',
+                textAlign: 'center',
+                fontWeight: 600,
+                color: 'white',
+                height: '40px',
+                paddingTop: '0px',
+                paddingBottom: '0px',
+                borderBottom: 'none',
+              }}
+            >
+              {electricityValue.electricityDetail.tV} V
+            </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>N</TableCell>
-            <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>{electricityValue.electricityDetail.nA} A</TableCell>
-            <TableCell sx={{ fontSize: '1rem', textAlign: 'center', fontWeight: 600, color: 'white' }}>{electricityValue.electricityDetail.nV} V</TableCell>
+            <TableCell
+              sx={{
+                fontSize: '1rem',
+                textAlign: 'center',
+                fontWeight: 600,
+                color: 'white',
+                height: '40px',
+                paddingTop: '0px',
+                paddingBottom: '0px',
+                borderBottom: 'none',
+              }}
+            >
+              N
+            </TableCell>
+            <TableCell
+              sx={{
+                fontSize: '1rem',
+                textAlign: 'center',
+                fontWeight: 600,
+                color: 'white',
+                height: '40px',
+                paddingTop: '0px',
+                paddingBottom: '0px',
+                borderBottom: 'none',
+              }}
+            >
+              {electricityValue.electricityDetail.nA} A
+            </TableCell>
           </TableRow>
         </TableBody>
       </Table>

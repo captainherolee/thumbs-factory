@@ -51,27 +51,34 @@ export default function ElectricStatus({ status }: ElectricStatusProps) {
           <Typography variant="h6">전력 ({ConvertStatusString(status)})</Typography>
         </Grid>
         <Grid item xs={12}>
-          <Typography sx={{ fontSize: '1rem', textAlign: 'right' }}>알람 설정 %{electricityValue.mdAlarmSetValue}</Typography>
+          <Typography sx={{ fontSize: '1rem', textAlign: 'right' }}>알람 설정 % {electricityValue.mdAlarmSetValue}</Typography>
         </Grid>
         <Grid item xs={12}>
           <PowerBarChart />
         </Grid>
-        <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor }}>
+        <Grid item xs={6} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor, paddingRight: '10px' }}>
           <Typography variant="h6">유효전력</Typography>
           <Typography variant="h6" sx={{ textAlign: 'right' }}>
             {electricityValue.activePower}
           </Typography>
         </Grid>
-        <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor }}>
+        <Grid item xs={6} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor }}>
           <Typography variant="h6">최대수요</Typography>
           <Typography variant="h6" sx={{ textAlign: 'right' }}>
             {electricityValue.maximumDemand}
           </Typography>
         </Grid>
-        <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor }}>
+        <Grid item xs={6} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor, paddingRight: '10px' }}>
           <Typography variant="h6">무효전력</Typography>
           <Typography variant="h6" sx={{ textAlign: 'right' }}>
             {electricityValue.reactivePower}
+          </Typography>
+        </Grid>
+
+        <Grid item xs={6} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor }}>
+          <Typography variant="h6">누설전류</Typography>
+          <Typography variant="h6" sx={{ textAlign: 'right' }}>
+            {electricityValue.leakageCurrent}
           </Typography>
         </Grid>
         <Grid item xs={12}>
@@ -80,7 +87,7 @@ export default function ElectricStatus({ status }: ElectricStatusProps) {
 
         <Grid item xs={12}>
           <Divider sx={{ my: 2, backgroundColor: BasicBorderColor, height: '1.5px' }} />
-          <Typography sx={{ fontSize: '1rem', textAlign: 'right' }}>알람 설정 %{electricityValue.cpAlarmSetValue}</Typography>
+          <Typography sx={{ fontSize: '1rem', textAlign: 'right' }}>알람 설정 % {electricityValue.cpAlarmSetValue}</Typography>
         </Grid>
         <Grid item xs={12}>
           <MonthlyBarChart />

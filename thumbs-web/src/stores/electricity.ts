@@ -9,7 +9,6 @@ const defaultElectricityDetail: IElectricityDetail = {
   rV: 0,
   sV: 0,
   tV: 0,
-  nV: 0,
 };
 
 export const defaultElectricity: IElectricity = {
@@ -24,6 +23,7 @@ export const defaultElectricity: IElectricity = {
   monthlyActivePower: 0,
   cumulativeReactivePower: 0,
   cumulativeActivePower: 0,
+  leakageCurrent: 0,
   electricityDetail: defaultElectricityDetail,
 };
 

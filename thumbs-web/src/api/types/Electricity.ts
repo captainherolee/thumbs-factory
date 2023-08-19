@@ -10,6 +10,7 @@ export interface IElectricity {
   monthlyActivePower: number;
   cumulativeReactivePower: number;
   cumulativeActivePower: number;
+  leakageCurrent: number;
   electricityDetail: IElectricityDetail;
 }
 
@@ -21,7 +22,6 @@ export interface IElectricityDetail {
   rV: number;
   sV: number;
   tV: number;
-  nV: number;
 }
 
 export interface IElectricityStatus {

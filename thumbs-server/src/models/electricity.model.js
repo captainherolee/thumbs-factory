@@ -8,7 +8,6 @@ const ElectricityDetail = {
   rV: 0,
   sV: 0,
   tV: 0,
-  nV: 0,
 };
 
 const Electricity = function (electricity) {
@@ -23,6 +22,7 @@ const Electricity = function (electricity) {
   this.monthlyActivePower = electricity.E_MonthlyActivePower;
   this.cumulativeReactivePower = electricity.E_CumulativeReactivePower;
   this.cumulativeActivePower = electricity.E_CumulativeActivePower;
+  this.leakageCurrent = electricity.E_LeakageCurrent;
   this.electricityDetail = {
     rA: electricity.RA,
     sA: electricity.SA,
@@ -31,7 +31,6 @@ const Electricity = function (electricity) {
     rV: electricity.RV,
     sV: electricity.SV,
     tV: electricity.TV,
-    nV: electricity.NV,
   };
 };
 
@@ -39,7 +38,7 @@ const Electricity = function (electricity) {
 Electricity.get = async (result) => {
   try {
     const rows = await sql.query(
-      "SELECT E_Connect, E_AlarmSet_MD, E_ActivePower, E_MaximumDemand, E_ReactivePower, RA, SA, TA, NA, RV, SV, TV, NV, E_AlarmSet_CP, E_MonthlyContractPower, E_MonthlyReactivePower, E_MonthlyActivePower, E_CumulativeReactivePower, E_CumulativeActivePower FROM VIEW"
+      "SELECT E_Connect, E_AlarmSet_MD, E_ActivePower, E_MaximumDemand, E_ReactivePower, E_LeakageCurrent, RA, SA, TA, NA, RV, SV, TV, E_AlarmSet_CP, E_MonthlyContractPower, E_MonthlyReactivePower, E_MonthlyActivePower, E_CumulativeReactivePower, E_CumulativeActivePower FROM VIEW"
     );
 
     if (rows && rows.length > 0) {
