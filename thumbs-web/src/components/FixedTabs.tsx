@@ -10,7 +10,7 @@ import GasStatus from '@componets/GasStatus';
 import RealTimeMonitoringChart from '@componets/RealtimeGraph';
 import { useGetElectricityStatus } from '@hooks/electicity';
 import { useGetGasStatus } from '@hooks/gas';
-import { BackGroundColor, BasicBorderColor, BasicLetterColor, PointColor } from '@utils/constant';
+import { BackGroundColor, BasicBorderColor, BasicLetterColor, ConnectionStatus, PointColor } from '@utils/constant';
 import { useEffect, useState } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { gasAtom, gasStatusAtom } from '@stores/gas';
@@ -29,21 +29,24 @@ export default function CustomTabs() {
 
   useEffect(() => {
     if (!electricStatusQuery.isLoading) {
-      if (electricStatusQuery.isFetched) {
-        console.log(electricStatusQuery.data.E_Connect);
+      if (electricStatusQuery.isFetched && electricStatusQuery.data && electricStatusQuery.data.E_Connect !== undefined) {
         setElectricityStatus(electricStatusQuery.data.E_Connect);
+      } else {
+        // Handle error case or provide a default value
+        setElectricityStatus(ConnectionStatus.Error); // For example, set to false if data is not available
       }
     }
-  }, [electricStatusQuery.isLoading]);
-
+  }, [electricStatusQuery.isLoading, electricStatusQuery.isFetched, electricStatusQuery.data]);
   useEffect(() => {
     if (!gasStatusQuery.isLoading) {
-      if (gasStatusQuery.isFetched) {
-        console.log(gasStatusQuery.data.G_Connect);
+      if (gasStatusQuery.isFetched && gasStatusQuery.data?.G_Connect !== undefined) {
         setGasStatus(gasStatusQuery.data.G_Connect);
+      } else {
+        // Handle error case or provide a default value
+        setGasStatus(ConnectionStatus.Error); // For example, set to false if data is not available
       }
     }
-  }, [gasStatusQuery.isLoading]);
+  }, [gasStatusQuery.isLoading, gasStatusQuery.isFetched, gasStatusQuery.data]);
 
   return (
     <Box sx={{ width: '100%', typography: 'body', backgroundColor: BackGroundColor }}>

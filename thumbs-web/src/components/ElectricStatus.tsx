@@ -37,7 +37,6 @@ export default function ElectricStatus({ status }: ElectricStatusProps) {
   useEffect(() => {
     if (!electricityQuery.isLoading) {
       if (electricityQuery.isFetched) {
-        console.log(electricityQuery.data);
         setElectricity(electricityQuery.data);
       }
     }
@@ -53,7 +52,7 @@ export default function ElectricStatus({ status }: ElectricStatusProps) {
           <Typography variant="h6">전력 ({ConvertStatusString(status)})</Typography>
         </Grid>
         <Grid item xs={12}>
-          <Typography sx={{ fontSize: '1rem', textAlign: 'right' }}>알람 설정 % {electricityValue.mdAlarmSetValue}</Typography>
+          <Typography sx={{ fontSize: '1rem', textAlign: 'right' }}>알람 설정 % {electricityValue?.mdAlarmSetValue ?? 'N/A'}</Typography>
         </Grid>
         <Grid item xs={12}>
           <PowerBarChart />

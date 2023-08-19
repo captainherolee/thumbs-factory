@@ -11,12 +11,14 @@ const pool = mariadb.createPool({
   connectionLimit: 10,
 });
 
-pool.getConnection((error, connection) => {
-  if (error) {
-    throw error;
+(async () => {
+  try {
+    const connection = await pool.getConnection();
+    console.log("Successfully connected to the database.");
+    connection.release();
+  } catch (error) {
+    console.error("Failed to connect to the database:", error.message);
   }
-  console.log("Successfully connected to the database.");
-  connection.release();
-});
+})();
 
 module.exports = pool;
