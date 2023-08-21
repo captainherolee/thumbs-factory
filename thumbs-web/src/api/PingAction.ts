@@ -1,4 +1,5 @@
 import { apiClient } from '@utils/client';
+import { IPing } from './types/Ping';
 
 function PingActions() {
   return {
@@ -6,7 +7,7 @@ function PingActions() {
   };
 
   async function getPing() {
-    const response = await apiClient.get<Boolean>(`/ping`);
+    const response = await apiClient.get<IPing>(`/ping`);
     return response.data;
   }
 }

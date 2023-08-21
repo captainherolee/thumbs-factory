@@ -60,26 +60,26 @@ export default function ElectricStatus({ status }: ElectricStatusProps) {
         <Grid item xs={6} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor, paddingRight: '10px' }}>
           <Typography variant="h6">유효전력</Typography>
           <Typography variant="h6" sx={{ textAlign: 'right' }}>
-            {electricityValue.activePower}
+            {electricityValue?.activePower ?? 0}
           </Typography>
         </Grid>
         <Grid item xs={6} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor }}>
           <Typography variant="h6">최대수요</Typography>
           <Typography variant="h6" sx={{ textAlign: 'right' }}>
-            {electricityValue.maximumDemand}
+            {electricityValue?.maximumDemand ?? 0}
           </Typography>
         </Grid>
         <Grid item xs={6} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor, paddingRight: '10px' }}>
           <Typography variant="h6">무효전력</Typography>
           <Typography variant="h6" sx={{ textAlign: 'right' }}>
-            {electricityValue.reactivePower}
+            {electricityValue?.reactivePower ?? 0}
           </Typography>
         </Grid>
 
         <Grid item xs={6} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor }}>
           <Typography variant="h6">누설전류</Typography>
           <Typography variant="h6" sx={{ textAlign: 'right' }}>
-            {electricityValue.leakageCurrent}
+            {electricityValue?.leakageCurrent ?? 0}
           </Typography>
         </Grid>
         <Grid item xs={12}>
@@ -88,7 +88,7 @@ export default function ElectricStatus({ status }: ElectricStatusProps) {
 
         <Grid item xs={12}>
           <Divider sx={{ my: 2, backgroundColor: BasicBorderColor, height: '1.5px' }} />
-          <Typography sx={{ fontSize: '1rem', textAlign: 'right' }}>알람 설정 % {electricityValue.cpAlarmSetValue}</Typography>
+          <Typography sx={{ fontSize: '1rem', textAlign: 'right' }}>알람 설정 % {electricityValue?.cpAlarmSetValue ?? 'N/A'}</Typography>
         </Grid>
         <Grid item xs={12}>
           <MonthlyBarChart />
@@ -96,31 +96,31 @@ export default function ElectricStatus({ status }: ElectricStatusProps) {
         <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor }}>
           <Typography variant="h6">{formattedDate} 계약전력량</Typography>
           <Typography variant="h6" sx={{ textAlign: 'right' }}>
-            {electricityValue.monthlyContractPower} kw
+            {electricityValue?.monthlyContractPower ?? 0} kw
           </Typography>
         </Grid>
         <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor }}>
           <Typography variant="h6">{formattedDate} 무효전력량</Typography>
           <Typography variant="h6" sx={{ textAlign: 'right' }}>
-            {electricityValue.monthlyReactivePower} kw
+            {electricityValue?.monthlyReactivePower ?? 0} kw
           </Typography>
         </Grid>
         <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor }}>
           <Typography variant="h6">{formattedDate} 유효전력량</Typography>
           <Typography variant="h6" sx={{ textAlign: 'right' }}>
-            {electricityValue.monthlyActivePower} kw
+            {electricityValue?.monthlyActivePower ?? 0} kw
           </Typography>
         </Grid>
         <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor }}>
           <Typography variant="h6">누적 무효전력량</Typography>
           <Typography variant="h6" sx={{ textAlign: 'right' }}>
-            {electricityValue.cumulativeReactivePower} kw
+            {electricityValue?.cumulativeReactivePower ?? 0} kw
           </Typography>
         </Grid>
         <Grid item xs={12} container justifyContent="space-between" sx={{ borderBottom: 1, borderColor: BasicBorderColor }}>
           <Typography variant="h6">누적 유효전력량</Typography>
           <Typography variant="h6" sx={{ textAlign: 'right' }}>
-            {electricityValue.cumulativeActivePower} kw
+            {electricityValue?.cumulativeActivePower ?? 0} kw
           </Typography>
         </Grid>
       </Grid>

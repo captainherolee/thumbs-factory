@@ -1,9 +1,10 @@
 import { PingActions } from '@api/PingAction';
+import { IPing } from '@api/types/Ping';
 import { useQuery } from 'react-query';
 
 const useGetPing = () => {
   const pingActions = PingActions();
-  return useQuery<Boolean>('query-ping', async () => pingActions.getPing(), {
+  return useQuery<IPing>('query-ping', async () => pingActions.getPing(), {
     retry: 3,
   });
 };

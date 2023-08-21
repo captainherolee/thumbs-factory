@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableRow, Paper } from '@mui/material';
 import { useRecoilValue } from 'recoil';
 import { electricityAtom } from '@stores/electricity';
 
@@ -37,7 +37,7 @@ export default function CustomTable() {
                 borderBottom: 'none',
               }}
             >
-              {electricityValue.electricityDetail.rA} A
+              {electricityValue?.electricityDetail?.rA ?? 0} A
             </TableCell>
             <TableCell
               sx={{
@@ -51,7 +51,7 @@ export default function CustomTable() {
                 borderBottom: 'none',
               }}
             >
-              {electricityValue.electricityDetail.rV} V
+              {electricityValue?.electricityDetail?.rV ?? 0} V
             </TableCell>
           </TableRow>
           <TableRow>
@@ -81,7 +81,7 @@ export default function CustomTable() {
                 borderBottom: 'none',
               }}
             >
-              {electricityValue.electricityDetail.sA} A
+              {electricityValue?.electricityDetail?.sA ?? 0} A
             </TableCell>
             <TableCell
               sx={{
@@ -95,7 +95,7 @@ export default function CustomTable() {
                 borderBottom: 'none',
               }}
             >
-              {electricityValue.electricityDetail.sV} V
+              {electricityValue?.electricityDetail?.sV ?? 0} V
             </TableCell>
           </TableRow>
           <TableRow>
@@ -125,7 +125,7 @@ export default function CustomTable() {
                 borderBottom: 'none',
               }}
             >
-              {electricityValue.electricityDetail.tA} A
+              {electricityValue?.electricityDetail?.tA ?? 0} A
             </TableCell>
             <TableCell
               sx={{
@@ -139,7 +139,7 @@ export default function CustomTable() {
                 borderBottom: 'none',
               }}
             >
-              {electricityValue.electricityDetail.tV} V
+              {electricityValue?.electricityDetail?.tV ?? 0} V
             </TableCell>
           </TableRow>
           <TableRow>
@@ -169,7 +169,7 @@ export default function CustomTable() {
                 borderBottom: 'none',
               }}
             >
-              {electricityValue.electricityDetail.nA} A
+              {electricityValue?.electricityDetail?.nA ?? 0} A
             </TableCell>
           </TableRow>
         </TableBody>

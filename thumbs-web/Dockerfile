@@ -1,6 +1,7 @@
 FROM node:16-bullseye-slim
-RUN yarn global add serve
-RUN mkdir ./build
-COPY ./build ./build
-ENTRYPOINT ["serve", "-s", "build"]
-
+WORKDIR /src
+ADD . /src
+RUN yarn install
+COPY . /src
+EXPOSE 3000
+CMD ["yarn", "start"]
