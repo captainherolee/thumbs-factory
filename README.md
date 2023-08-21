@@ -4,19 +4,18 @@ The solution is for monitoring of smart factory regarding the usage of electrici
 
 ## thumbs-web
 
-### Significant Library
+### Software Requirement
 
 - React / typescript
 - recoil
 - axios
 - material UI
-  There are 3 tabs in SPA.
 
 ## thumbs-server
 
-### Significant Library
+### Software Requirement
 
-- nodeJS
+- nodeJS >= v16
 - express
 - MariaDB connector
 - dotenv
@@ -29,3 +28,7 @@ The solution is for monitoring of smart factory regarding the usage of electrici
 - GET /gas
 - GET /gas/status
 - GET /log
+
+## How To Run
+
+- docker-compose up -d
