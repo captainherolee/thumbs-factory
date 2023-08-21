@@ -2,6 +2,7 @@ version: "3.5"
 
 services:
   node-web-server:
+    platform: linux/amd64
     container_name: node-web-server
     restart: always
     build:
