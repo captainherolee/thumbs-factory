@@ -22,12 +22,12 @@ The solution is for monitoring of smart factory regarding the usage of electrici
 
 ### API
 
-- GET /ping
-- GET /electricity
-- GET /electricity/status
-- GET /gas
-- GET /gas/status
-- GET /log
+- GET /api/v1/ping
+- GET /api/v1/electricity
+- GET /api/v1/electricity/status
+- GET /api/v1/gas
+- GET /api/v1/gas/status
+- GET /api/v1/log
 
 ## How To Run
 

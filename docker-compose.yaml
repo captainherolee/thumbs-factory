@@ -8,12 +8,17 @@ services:
     build:
       context: ./thumbs-server
       dockerfile: Dockerfile
-    image: thumbs-server:v1.0
+    image: thumbs-server:v1.1
     env_file:
       - ./thumbs-server/.env
     ports:
       - 8000:8000
     networks:
       - thumbs
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "10"
 networks:
   thumbs:
